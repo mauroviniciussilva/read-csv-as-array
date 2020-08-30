@@ -27,7 +27,7 @@ const array = await convertCsvToArray(file, separator, linesToRemove);
 The `.csv` file:
 
 ```
-name;age;gender;
+name;age;gender
 mauro;22;male
 terrani;19;non-binary
 thawanny;20;female
