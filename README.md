@@ -32,7 +32,7 @@ The `.csv` file:
 name;age;gender
 mauro;22;male
 terrani;19;non-binary
-thawanny;20;female
+debora;20;female
 ```
 
 #### Output
@@ -45,7 +45,7 @@ const array = convertCsvToArray(file, ";");
 [
     { name: "mauro", age: "22", gender: "male" },
     { name: "terrani", age: "19", gender: "non-binary" },
-    { name: "thawanny", age: "20", gender: "female" }
+    { name: "debora", age: "20", gender: "female" }
 ]
 ```
 
