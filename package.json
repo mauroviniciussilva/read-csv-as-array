@@ -1,27 +1,36 @@
 {
-  "name": "read-csv-as-array",
-  "version": "1.0.1",
-  "description": "A simple way to convert a CSV file into an array",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "read-csv-as-array",
-    "read-excel",
-    "csv",
-    "excel",
-    "libreoffice",
-    "openoffice"
-],
-  "author": "Mauro Oliveira",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mauroviniciussilva/read-csv-as-array.git"
-  },
-  "bugs": {
-    "url": "https://github.com/mauroviniciussilva/read-csv-as-array/issues"
-  },
-  "homepage": "https://github.com/mauroviniciussilva/read-csv-as-array#readme"
+    "name": "read-csv-as-array",
+    "version": "1.0.1",
+    "description": "A simple way to convert a CSV file into an array",
+    "main": "index.js",
+    "type": "module",
+    "exports": {
+        "import": "./index.js",
+        "require": "./index.cjs"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "rollup index.js --file index.cjs --format cjs"
+    },
+    "keywords": [
+        "read-csv-as-array",
+        "read-excel",
+        "csv",
+        "excel",
+        "libreoffice",
+        "openoffice"
+    ],
+    "author": "Mauro Oliveira",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mauroviniciussilva/read-csv-as-array.git"
+    },
+    "bugs": {
+        "url": "https://github.com/mauroviniciussilva/read-csv-as-array/issues"
+    },
+    "homepage": "https://github.com/mauroviniciussilva/read-csv-as-array#readme",
+    "devDependencies": {
+        "rollup": "^4.24.0"
+    }
 }
