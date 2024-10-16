@@ -1,7 +1,7 @@
 'use strict';
 
 const isFileDefault = (file) => 'name' in file;
-const isFileMulterExpress = (file) => 'filename' in file;
+const isFileMulterExpress = (file) => "originalname" in file;
 
 function readFileAsync(file) {
 	return new Promise((resolve, reject) => {
@@ -17,7 +17,7 @@ function readFileAsync(file) {
 async function processFile(file) {
 	try {
 		if (isFileMulterExpress(file)) {
-			return readFileAsync(file.buffer);
+     	    return file.buffer.toString("utf-8");
 		} else {
 			return readFileAsync(file);
 		}
@@ -29,8 +29,8 @@ async function processFile(file) {
 function isCsvExtension(file) {
 	let isCsv = !!file;
 	if (isFileDefault(file) || isFileMulterExpress(file)) {
-		const name = isFileDefault(file) ? file.name : file.filename;
-		const isCsvExtension = name.split('.').pop() != 'csv';
+		const name = isFileDefault(file) ? file.name : file.originalname;
+		const isCsvExtension = name.split('.').pop() === 'csv';
 		if (!isCsvExtension) isCsv = false;
 	} else {
 		isCsv = false;
