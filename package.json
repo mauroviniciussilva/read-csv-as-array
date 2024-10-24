@@ -1,6 +1,6 @@
 {
     "name": "read-csv-as-array",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "description": "A simple way to convert a CSV file into an array",
     "main": "index.js",
     "type": "module",

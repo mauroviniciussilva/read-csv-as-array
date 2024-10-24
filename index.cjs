@@ -38,6 +38,34 @@ function isCsvExtension(file) {
 	return isCsv;
 }
 
+function formatCsvStringToArray(csv, separator = ",", rowsToRemove = 0) {
+  	const rows = csv.split("\n");
+  	if (rowsToRemove > 0) {
+    	for (let i = 0; i < rowsToRemove; i++) {
+    	  rows.shift();
+    	}
+  	}
+  	const array = [];
+  	const headers = rows[0].split(separator);
+
+  	for (let i = 1; i < rows.length; i++) {
+ 	   const obj = {};
+  	  const currentRow = rows[i].split(separator);
+
+  	  for (let idx = 0; idx < headers.length; idx++) {
+  	    const key = headers[idx].trim().replace(" ", "_");
+   	   const value = currentRow[idx]
+   	     ? currentRow[idx].replace(/['"]+/g, "")
+   	     : null;
+  	    obj[key] = value;
+   	 }
+
+  	  array.push(obj);
+ 	 }
+
+  	return array;
+}
+
 async function convertCsvToArray(
 	file,
 	separator = ',',
@@ -48,35 +76,13 @@ async function convertCsvToArray(
 		if (!isValid) throw Error('File extension is not valid');
 
 		const csv = await processFile(file);
-		const rows = csv.split('\n');
-		if (rowsToRemove > 0) {
-			for (let i = 0; i < rowsToRemove; i++) {
-				rows.shift();
-			}
-		}
-		const array = [];
-		const headers = rows[0].split(separator);
 
-		for (let i = 1; i < rows.length; i++) {
-			const obj = {};
-			const currentRow = rows[i].split(separator);
-
-			for (let idx = 0; idx < headers.length; idx++) {
-				const key = headers[idx].trim().replace(' ', '_');
-				const value = currentRow[idx]
-					? currentRow[idx].replace(/['"]+/g, '')
-					: null;
-				obj[key] = value;
-			}
-
-			array.push(obj);
-		}
-
-		return array;
+		return formatCsvStringToArray(csv, separator, rowsToRemove);
 	} catch (err) {
 		throw Error('Unable to read the file');
 	}
 }
 
 exports.convertCsvToArray = convertCsvToArray;
+exports.formatCsvStringToArray = formatCsvStringToArray;
 exports.isCsvExtension = isCsvExtension;
